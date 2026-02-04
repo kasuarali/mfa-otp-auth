@@ -1,0 +1,50 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:mfa;DB_CLOSE_DELAY=-1
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2
+
+  # Email: set your SMTP details (Gmail example uses App Password)
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: your_email@gmail.com
+    password: your_app_password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+app:
+  jwt:
+    # IMPORTANT: use a long random secret (32+ chars)
+    secret: "CHANGE_ME_TO_A_LONG_RANDOM_SECRET_32+_CHARS"
+    accessTokenMinutes: 30
+
+  otp:
+    ttlSeconds: 120
+    maxAttempts: 5
+
+  sms:
+    # TWILIO or CONSOLE
+    provider: CONSOLE
+    twilio:
+      accountSid: "YOUR_SID"
+      authToken: "YOUR_TOKEN"
+      fromNumber: "+1234567890"
